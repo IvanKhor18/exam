@@ -3,10 +3,24 @@
   "version": "1.0.0",
   "main": "server.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "node server.js"
   },
   "keywords": [],
   "author": "",
   "license": "ISC",
-  "description": ""
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/IvanKhor18/exam.git"
+  },
+  "bugs": {
+    "url": "https://github.com/IvanKhor18/exam/issues"
+  },
+  "homepage": "https://github.com/IvanKhor18/exam#readme",
+  "description": "",
+  "dependencies": {
+    "cors": "^2.8.5",
+    "express": "^4.21.2",
+    "mongoose": "^8.12.1"
+  }
 }
