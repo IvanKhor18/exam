@@ -5,24 +5,38 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Quiz App</title>
     <style>
-        body { font-family: Arial, sans-serif; padding: 20px; }
+        body { 
+            font-family: Arial, sans-serif; 
+            padding: 20px; 
+            display: flex; 
+            justify-content: center; 
+            align-items: center; 
+            flex-direction: column; 
+            height: 100vh; 
+            margin: 0; 
+        }
         button { margin: 5px; }
         .answer { margin: 5px 0; }
+        #question-container { 
+            text-align: center; 
+        }
+        h1, h2 {
+            text-align: center;
+        }
     </style>
 </head>
 <body>
     <h1 id="question-title">Question</h1>
+    <h2 id="question-number">Question 1 of ?</h2>
     <div id="question-container"></div>
     <button id="submit-button">Submit</button>
     <button id="previous-button">Previous</button>
     <button id="next-button">Next</button>
-    <h2>Your Score: <span id="score">0</span></h2>
     <div id="show-answer"></div>
     
     <script>
         let questions = [];
         let currentQuestionIndex = 0;
-        let score = 0;
         let userAnswers = {};
 
         // Fetch and render the questions from the JSON
@@ -34,11 +48,15 @@
 
         function renderQuestion() {
             const questionElement = document.getElementById('question-title');
+            const questionNumberElement = document.getElementById('question-number');
             const answersContainer = document.getElementById('question-container');
+            const showAnswerContainer = document.getElementById('show-answer');
 
             const currentQuestion = questions[currentQuestionIndex];
             questionElement.innerText = currentQuestion.question; // Update question text
+            questionNumberElement.innerText = `Question ${currentQuestionIndex + 1} of ${questions.length}`; // Update question number
             answersContainer.innerHTML = ''; // Clear previous answers
+            showAnswerContainer.innerHTML = ''; // Clear previous answers feedback
 
             currentQuestion.answers.forEach(answer => {
                 const answerElement = document.createElement('div');
@@ -68,20 +86,9 @@
             const correctAnswerIds = currentQuestion.answers
                 .filter(answer => answer.isCorrect)
                 .map(answer => answer.id);
-            
-            // Check answers based on answer type
-            if (currentQuestion.answerType === 'single') {
-                if (userAnswers[currentQuestionIndex]?.includes(correctAnswerIds[0])) {
-                    score++;
-                }
-            } else {
-                const correctCount = userAnswers[currentQuestionIndex]?.filter(answerId => correctAnswerIds.includes(answerId)).length;
-                score += correctCount || 0;
-            }
 
-            document.getElementById('score').innerText = score;
             const showAnswerContainer = document.getElementById('show-answer');
-            showAnswerContainer.innerHTML = '';
+            showAnswerContainer.innerHTML = ''; // Clear previous feedback section before showing new results
             currentQuestion.answers.forEach(answer => {
                 const resultElement = document.createElement('p');
                 resultElement.innerText = `${answer.text} ${answer.isCorrect ? '(Correct)' : '(Incorrect)'}`;
@@ -102,6 +109,8 @@
                 currentQuestionIndex++;
                 renderQuestion();
             }
+            // Clear the previous answer feedback when moving to the next question
+            document.getElementById('show-answer').innerHTML = '';
         };
 
         fetchQuestions(); // Start fetching questions on page load
