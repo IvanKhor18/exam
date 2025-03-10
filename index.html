@@ -24,14 +24,22 @@
         let currentQuestionIndex = 0;
         let score = 0;
         let userAnswers = {};
-        
+
+        // Fetch and render the questions from the JSON
+        async function fetchQuestions() {
+            const response = await fetch('questions.json');
+            questions = await response.json();
+            renderQuestion();
+        }
+
         function renderQuestion() {
             const questionElement = document.getElementById('question-title');
             const answersContainer = document.getElementById('question-container');
 
             const currentQuestion = questions[currentQuestionIndex];
-            questionElement.innerText = 'Question ' + (currentQuestionIndex + 1);
-            answersContainer.innerHTML = '';
+            questionElement.innerText = currentQuestion.question; // Update question text
+            answersContainer.innerHTML = ''; // Clear previous answers
+
             currentQuestion.answers.forEach(answer => {
                 const answerElement = document.createElement('div');
                 answerElement.className = 'answer';
@@ -45,17 +53,14 @@
 
         function handleAnswerSelection(answerId) {
             const currentAnswers = userAnswers[currentQuestionIndex] || [];
-            if (currentAnswers.includes(answerId)) {
-                userAnswers[currentQuestionIndex] = currentAnswers.filter(id => id !== answerId);
-            } else {
-                userAnswers[currentQuestionIndex] = [...currentAnswers, answerId];
-            }
-        }
+            const answerIndex = currentAnswers.indexOf(answerId);
 
-        async function fetchQuestions() {
-            const response = await fetch('/api/questions'); // Note: This will not work without a backend
-            questions = await response.json();
-            renderQuestion();
+            if (answerIndex >= 0) {
+                currentAnswers.splice(answerIndex, 1); // Remove answer if already selected
+            } else {
+                currentAnswers.push(answerId); // Add new answer
+            }
+            userAnswers[currentQuestionIndex] = currentAnswers; // Update user answers
         }
 
         async function handleSubmit() {
@@ -64,6 +69,7 @@
                 .filter(answer => answer.isCorrect)
                 .map(answer => answer.id);
             
+            // Check answers based on answer type
             if (currentQuestion.answerType === 'single') {
                 if (userAnswers[currentQuestionIndex]?.includes(correctAnswerIds[0])) {
                     score++;
@@ -98,7 +104,7 @@
             }
         };
 
-        fetchQuestions();
+        fetchQuestions(); // Start fetching questions on page load
     </script>
 </body>
 </html>
