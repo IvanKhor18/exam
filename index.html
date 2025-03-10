@@ -1,39 +1,69 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Quiz App</title>
     <style>
-        body { 
-            font-family: Arial, sans-serif; 
-            padding: 20px; 
-            display: flex; 
-            justify-content: center; 
-            align-items: center; 
-            flex-direction: column; 
-            height: 100vh; 
-            margin: 0; 
+        body {
+            font-family: Arial, sans-serif;
+            padding: 20px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            flex-direction: column;
+            height: 100vh;
+            margin: 0;
         }
-        button { margin: 5px; }
-        .answer { margin: 5px 0; }
-        #question-container { 
-            text-align: center; 
+
+        button {
+            margin: 5px;
         }
-        h1, h2 {
+
+        .answer {
+            margin: 5px 0;
+        }
+
+        #question-container {
             text-align: center;
+        }
+
+        h1 {
+            font-size: 1.5em; /* Smaller font size for the question */
+        }
+
+        h2 {
+            text-align: center;
+            font-size: 1.8em; /* Larger font size for "Question 1 of ?" */
+        }
+
+        .button-row {
+            display: flex;
+            justify-content: center; /* Center buttons in a row */
+            width: 100%; /* Take full width */
+            margin-top: 20px; /* Space above button row */
+        }
+
+        .button-row button {
+            margin: 0 10px; /* Space between buttons */
         }
     </style>
 </head>
+
 <body>
-    <h1 id="question-title">Question</h1>
     <h2 id="question-number">Question 1 of ?</h2>
+    <h1 id="question-title">Question</h1>
     <div id="question-container"></div>
-    <button id="submit-button">Submit</button>
-    <button id="previous-button">Previous</button>
-    <button id="next-button">Next</button>
-    <div id="show-answer"></div>
+
+    <div class="button-row">
+        <button id="previous-button">Previous</button>
+        <button id="submit-button">Submit</button>
+        <button id="next-button">Next</button>
+    </div>
     
+    <div id="show-answer"></div>
+
     <script>
         let questions = [];
         let currentQuestionIndex = 0;
@@ -116,4 +146,5 @@
         fetchQuestions(); // Start fetching questions on page load
     </script>
 </body>
+
 </html>
