@@ -76,7 +76,7 @@
 
         // Fetch and render the questions from the JSON
         async function fetchQuestions() {
-            const response = await fetch('questions.json');
+            const response = await fetch('questions.json'); // Ensure 'questions.json' is accessible in the same directory
             questions = await response.json();
             renderQuestion();
         }
