@@ -1,63 +1,139 @@
-let questions = [];
-let currentQuestionIndex = 0;
-let userAnswers = [];
+<!DOCTYPE html>
+<html lang="en">
 
-// Fetch and render the questions from the JSON
-async function fetchQuestions() {
-    const response = await fetch('questions.json');
-    questions = await response.json();
-    renderQuestion();
-}
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Quiz App</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            padding: 20px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            flex-direction: column;
+            height: 100vh;
+            margin: 0;
+        }
 
-function renderQuestion() {
-    const questionElement = document.getElementById('question-title');
-    const questionNumberElement = document.getElementById('question-number');
-    const answersContainer = document.getElementById('question-container');
-    const showAnswerContainer = document.getElementById('show-answer');
+        button {
+            margin: 5px;
+        }
 
-    const currentQuestion = questions[currentQuestionIndex];
-    questionElement.innerText = currentQuestion.question; // Update question text
-    questionNumberElement.innerText = `Question ${currentQuestionIndex + 1} of ${questions.length}`; // Update question number
-    answersContainer.innerHTML = ''; // Clear previous answers
-    showAnswerContainer.innerHTML = ''; // Clear previous answers feedback
+        .answer {
+            margin: 5px 0;
+        }
 
-    currentQuestion.answers.forEach(answer => {
-        const answerElement = document.createElement('div');
-        answerElement.className = 'answer';
-        answerElement.innerHTML = `
-            <input type="${currentQuestion.answerType === 'single' ? 'radio' : 'checkbox'}" name="answer" value="${answer.id}" onchange="handleAnswerSelection(${answer.id})">
-            <label>${answer.text}</label>
-        `;
-        answersContainer.appendChild(answerElement);
-    });
-}
+        #question-container {
+            text-align: center;
+        }
 
-document.getElementById('reset-button').onclick = () => {
-    currentQuestionIndex = 0; // Reset to first question
-    renderQuestion();
-    userAnswers = {}; // Clear previous answers
-};
+        h1 {
+            font-size: 1.5em; /* Smaller font size for the question */
+        }
 
-document.getElementById('randomize-button').onclick = () => {
-    questions.sort(() => Math.random() - 0.5); // Randomize the questions
-    currentQuestionIndex = 0; // Reset to the first question after randomization
-    renderQuestion();
-};
+        h2 {
+            text-align: center;
+            font-size: 1.8em; /* Larger font size for "Question 1 of ?" */
+        }
 
-document.getElementById('submit-button').onclick = handleSubmit;
-document.getElementById('previous-button').onclick = () => {
-    if (currentQuestionIndex > 0) {
-        currentQuestionIndex--;
-        renderQuestion();
-    }
-};
-document.getElementById('next-button').onclick = () => {
+        .button-row {
+            display: flex;
+            justify-content: center; /* Center buttons in a row */
+            width: 100%; /* Take full width */
+            margin-top: 20px; /* Space above button row */
+        }
+
+        .button-row button {
+            margin: 0 10px; /* Space between buttons */
+        }
+    </style>
+</head>
+
+<body>
+    <h2 id="question-number">Question 1 of ?</h2>
+    <h1 id="question-title">Question</h1>
+    <div id="question-container"></div>
+
+    <div class="button-row" style="position: absolute; top: 20px; right: 20px;">
+        <button id="randomize-button">Randomize Questions</button>
+        <button id="reset-button">Reset Default</button>
+    </div>
+
+    <div class="button-row">
+        <button id="previous-button">Previous</button>
+        <button id="submit-button">Submit</button>
+        <button id="next-button">Next</button>
+    </div>
+    
+    <div id="show-answer"></div>
+
+    <script>
+        let questions = [];
+        let currentQuestionIndex = 0;
+        let userAnswers = [];
+
+        // Fetch and render the questions from the JSON
+        async function fetchQuestions() {
+            const response = await fetch('questions.json');
+            questions = await response.json();
+            renderQuestion();
+        }
+
+        function renderQuestion() {
+            const questionElement = document.getElementById('question-title');
+            const questionNumberElement = document.getElementById('question-number');
+            const answersContainer = document.getElementById('question-container');
+            const showAnswerContainer = document.getElementById('show-answer');
+
+            const currentQuestion = questions[currentQuestionIndex];
+            questionElement.innerText = currentQuestion.question; // Update question text
+            questionNumberElement.innerText = `Question ${currentQuestionIndex + 1} of ${questions.length}`; // Update question number
+            answersContainer.innerHTML = ''; // Clear previous answers
+            showAnswerContainer.innerHTML = ''; // Clear previous answers feedback
+
+            currentQuestion.answers.forEach(answer => {
+                const answerElement = document.createElement('div');
+                answerElement.className = 'answer';
+                answerElement.innerHTML = `
+                <input type="${currentQuestion.answerType === 'single' ? 'radio' : 'checkbox'}" name="answer" value="${answer.id}" onchange="handleAnswerSelection(${answer.id})">
+                <label>${answer.text}</label>
+                `;
+                answersContainer.appendChild(answerElement);
+            });
+        }
+
+        document.getElementById('reset-button').onclick = () => {
+            currentQuestionIndex = 0; // Reset to first question
+            renderQuestion();
+            userAnswers = {}; // Clear previous answers
+        };
+
+        document.getElementById('randomize-button').onclick = () => {
+            questions.sort(() => Math.random() - 0.5); // Randomize the questions
+            currentQuestionIndex = 0; // Reset to the first question after randomization
+            renderQuestion();
+        };
+
+    document.getElementById('submit-button').onclick = handleSubmit;
+    document.getElementById('previous-button').onclick = () => {
+        if (currentQuestionIndex > 0) {
+            currentQuestionIndex--;
+            renderQuestion();
+        }
+    };
+    document.getElementById('next-button').onclick = () => {
     if (currentQuestionIndex < questions.length - 1) {
         currentQuestionIndex++;
         renderQuestion();
     }
-    // Clear the previous answer feedback when moving to the next question
-    document.getElementById('show-answer').innerHTML = '';
-};
+        // Clear the previous answer feedback when moving to the next question
+        document.getElementById('show-answer').innerHTML = '';
+        };
 
-fetchQuestions(); // Start fetching questions on page load
+        fetchQuestions(); // Start fetching questions on page load
+    </script>
+</body>
+
+</html>
