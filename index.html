@@ -60,7 +60,7 @@
         <button id="randomize-button">Randomize Questions</button>
         <button id="reset-button">Reset Default</button>
     </div>
-
+    
     <div class="button-row">
         <button id="previous-button">Previous</button>
         <button id="submit-button">Submit</button>
@@ -97,10 +97,38 @@
                 const answerElement = document.createElement('div');
                 answerElement.className = 'answer';
                 answerElement.innerHTML = `
-                <input type="${currentQuestion.answerType === 'single' ? 'radio' : 'checkbox'}" name="answer" value="${answer.id}" onchange="handleAnswerSelection(${answer.id})">
-                <label>${answer.text}</label>
+                    <input type="${currentQuestion.answerType === 'single' ? 'radio' : 'checkbox'}" name="answer" value="${answer.id}" onchange="handleAnswerSelection(${answer.id})">
+                    <label>${answer.text}</label>
                 `;
                 answersContainer.appendChild(answerElement);
+            });
+        }
+
+        function handleAnswerSelection(answerId) {
+            const currentAnswers = userAnswers[currentQuestionIndex] || [];
+            const answerIndex = currentAnswers.indexOf(answerId);
+
+            if (answerIndex >= 0) {
+                currentAnswers.splice(answerIndex, 1); // Remove answer if already selected
+            } else {
+                currentAnswers.push(answerId); // Add new answer
+            }
+            userAnswers[currentQuestionIndex] = currentAnswers; // Update user answers
+        }
+
+        async function handleSubmit() {
+            const currentQuestion = questions[currentQuestionIndex];
+            const correctAnswerIds = currentQuestion.answers
+                .filter(answer => answer.isCorrect)
+                .map(answer => answer.id);
+
+            const showAnswerContainer = document.getElementById('show-answer');
+            showAnswerContainer.innerHTML = ''; // Clear previous feedback section before showing new results
+            currentQuestion.answers.forEach(answer => {
+                const resultElement = document.createElement('p');
+                resultElement.innerText = `${answer.text} ${answer.isCorrect ? '(Correct)' : '(Incorrect)'}`;
+                resultElement.style.color = answer.isCorrect ? 'green' : 'red';
+                showAnswerContainer.appendChild(resultElement);
             });
         }
 
@@ -116,20 +144,20 @@
             renderQuestion();
         };
 
-    document.getElementById('submit-button').onclick = handleSubmit;
-    document.getElementById('previous-button').onclick = () => {
-        if (currentQuestionIndex > 0) {
-            currentQuestionIndex--;
-            renderQuestion();
-        }
-    };
-    document.getElementById('next-button').onclick = () => {
-    if (currentQuestionIndex < questions.length - 1) {
-        currentQuestionIndex++;
-        renderQuestion();
-    }
-        // Clear the previous answer feedback when moving to the next question
-        document.getElementById('show-answer').innerHTML = '';
+        document.getElementById('submit-button').onclick = handleSubmit;
+        document.getElementById('previous-button').onclick = () => {
+            if (currentQuestionIndex > 0) {
+                currentQuestionIndex--;
+                renderQuestion();
+            }
+        };
+        document.getElementById('next-button').onclick = () => {
+            if (currentQuestionIndex < questions.length - 1) {
+                currentQuestionIndex++;
+                renderQuestion();
+            }
+            // Clear the previous answer feedback when moving to the next question
+            document.getElementById('show-answer').innerHTML = '';
         };
 
         fetchQuestions(); // Start fetching questions on page load
