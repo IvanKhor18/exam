@@ -15,7 +15,6 @@
             flex-direction: column;
             height: 100vh;
             margin: 0;
-            /*position: relative; /* Add this line */
         }
 
         button {
@@ -31,21 +30,20 @@
         }
 
         h1 {
-            font-size: 1.5em; /* Smaller font size for the question */
+            font-size: 1.5em;
         }
 
         h2 {
             text-align: center;
-            font-size: 1.8em; /* Larger font size for "Question 1 of ?" */
+            font-size: 1.8em;
         }
 
         .button-row {
             display: flex;
-            justify-content: center; /* Center buttons in a row */
-            width: 100%; /* Take full width */
-            margin-top: 20px; /* Space above button row */
-            position: absolute; /* Change to absolute */
-            bottom: 20px; /* Position at the bottom */
+            justify-content: center;
+            width: 100%;
+            position: absolute;
+            bottom: 20px; /* Position at the bottom of the page */
         }
 
         .button-row button {
@@ -59,14 +57,11 @@
     <h1 id="question-title">Question</h1>
     <div id="question-container"></div>
 
-    <div class="button-row" style="position: absolute; top: 20px; right: 20px;">
+    <div class="button-row">
         <button id="randomize-button">Randomize Questions</button>
         <button id="reset-button">Reset Default</button>
-    </div>
-    
-    <div class="button-row">
-        <button id="previous-button">Previous</button>
         <button id="submit-button">Submit</button>
+        <button id="previous-button">Previous</button>
         <button id="next-button">Next</button>
     </div>
     
@@ -77,9 +72,8 @@
         let currentQuestionIndex = 0;
         let userAnswers = [];
 
-        // Fetch and render the questions from the JSON
         async function fetchQuestions() {
-            const response = await fetch('questions.json'); // Ensure 'questions.json' is accessible in the same directory
+            const response = await fetch('questions.json');
             questions = await response.json();
             renderQuestion();
         }
@@ -91,10 +85,10 @@
             const showAnswerContainer = document.getElementById('show-answer');
 
             const currentQuestion = questions[currentQuestionIndex];
-            questionElement.innerText = currentQuestion.question; // Update question text
-            questionNumberElement.innerText = `Question ${currentQuestionIndex + 1} of ${questions.length}`; // Update question number
-            answersContainer.innerHTML = ''; // Clear previous answers
-            showAnswerContainer.innerHTML = ''; // Clear previous answers feedback
+            questionElement.innerText = currentQuestion.question;
+            questionNumberElement.innerText = `Question ${currentQuestionIndex + 1} of ${questions.length}`;
+            answersContainer.innerHTML = '';
+            showAnswerContainer.innerHTML = '';
 
             currentQuestion.answers.forEach(answer => {
                 const answerElement = document.createElement('div');
@@ -112,11 +106,11 @@
             const answerIndex = currentAnswers.indexOf(answerId);
 
             if (answerIndex >= 0) {
-                currentAnswers.splice(answerIndex, 1); // Remove answer if already selected
+                currentAnswers.splice(answerIndex, 1);
             } else {
-                currentAnswers.push(answerId); // Add new answer
+                currentAnswers.push(answerId);
             }
-            userAnswers[currentQuestionIndex] = currentAnswers; // Update user answers
+            userAnswers[currentQuestionIndex] = currentAnswers;
         }
 
         async function handleSubmit() {
@@ -126,7 +120,7 @@
                 .map(answer => answer.id);
 
             const showAnswerContainer = document.getElementById('show-answer');
-            showAnswerContainer.innerHTML = ''; // Clear previous feedback section before showing new results
+            showAnswerContainer.innerHTML = '';
             currentQuestion.answers.forEach(answer => {
                 const resultElement = document.createElement('p');
                 resultElement.innerText = `${answer.text} ${answer.isCorrect ? '(Correct)' : '(Incorrect)'}`;
@@ -136,14 +130,14 @@
         }
 
         document.getElementById('reset-button').onclick = () => {
-            currentQuestionIndex = 0; // Reset to first question
+            currentQuestionIndex = 0;
             renderQuestion();
-            userAnswers = {}; // Clear previous answers
+            userAnswers = {};
         };
 
         document.getElementById('randomize-button').onclick = () => {
-            questions.sort(() => Math.random() - 0.5); // Randomize the questions
-            currentQuestionIndex = 0; // Reset to the first question after randomization
+            questions.sort(() => Math.random() - 0.5);
+            currentQuestionIndex = 0;
             renderQuestion();
         };
 
@@ -159,11 +153,10 @@
                 currentQuestionIndex++;
                 renderQuestion();
             }
-            // Clear the previous answer feedback when moving to the next question
             document.getElementById('show-answer').innerHTML = '';
         };
 
-        fetchQuestions(); // Start fetching questions on page load
+        fetchQuestions();
     </script>
 </body>
 
