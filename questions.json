@@ -1446,4 +1446,414 @@
     "B. From the Directory role blade, modify the directory role"
   ],
   "answerType": "single"
+},
+{
+  "_id": {
+    "$oid": "000000000000000000000051"
+  },
+  "question": "You have an Azure Active Directory (Azure AD) tenant named contoso.onmicrosoft.com that contains 100 user accounts. You purchase 10 Azure AD Premium P2 licenses for the tenant. You need to ensure that 10 users can use all the Azure AD Premium features. What should you do?",
+  "answers": [
+    {
+      "id": 1,
+      "text": "A. From the Licenses blade of Azure AD, assign a license",
+      "isCorrect": true
+    },
+    {
+      "id": 2,
+      "text": "B. From the Groups blade of each user, invite the users to a group",
+      "isCorrect": false
+    },
+    {
+      "id": 3,
+      "text": "C. From the Azure AD domain, add an enterprise application",
+      "isCorrect": false
+    },
+    {
+      "id": 4,
+      "text": "D. From the Directory role blade of each user, modify the directory role",
+      "isCorrect": false
+    }
+  ],
+  "correctAnswers": [
+    "A. From the Licenses blade of Azure AD, assign a license"
+  ],
+  "answerType": "single"
+},
+{
+  "_id": {
+    "$oid": "000000000000000000000052"
+  },
+  "question": "You have an Azure subscription named Subscription1 and an on-premises deployment of Microsoft System Center Service Manager. Subscription1 contains a virtual machine named VM1. You need to ensure that an alert is set in Service Manager when the amount of available memory on VM1 is below 10 percent. What should you do first?",
+  "answers": [
+    {
+      "id": 1,
+      "text": "A. Create an automation runbook",
+      "isCorrect": false
+    },
+    {
+      "id": 2,
+      "text": "B. Deploy a function app",
+      "isCorrect": false
+    },
+    {
+      "id": 3,
+      "text": "C. Deploy the IT Service Management Connector (ITSM)",
+      "isCorrect": true
+    },
+    {
+      "id": 4,
+      "text": "D. Create a notification",
+      "isCorrect": false
+    }
+  ],
+  "correctAnswers": [
+    "C. Deploy the IT Service Management Connector (ITSM)"
+  ],
+  "answerType": "single"
+},
+{
+  "_id": {
+    "$oid": "000000000000000000000053"
+  },
+  "question": "You sign up for Azure Active Directory (Azure AD) Premium P2. You need to add a user named admin1@contoso.com as an administrator on all the computers that will be joined to the Azure AD domain. What should you configure in Azure AD?",
+  "answers": [
+    {
+      "id": 1,
+      "text": "A. Device settings from the Devices blade",
+      "isCorrect": true
+    },
+    {
+      "id": 2,
+      "text": "B. Providers from the MFA Server blade",
+      "isCorrect": false
+    },
+    {
+      "id": 3,
+      "text": "C. User settings from the Users blade",
+      "isCorrect": false
+    },
+    {
+      "id": 4,
+      "text": "D. General settings from the Groups blade",
+      "isCorrect": false
+    }
+  ],
+  "correctAnswers": [
+    "A. Device settings from the Devices blade"
+  ],
+  "answerType": "single"
+},
+{
+  "_id": {
+    "$oid": "000000000000000000000054"
+  },
+  "question": "HOTSPOT - You have Azure Active Directory tenant named Contoso.com that includes following users: Contoso.com includes following Windows 10 devices: You create following security groups in Contoso.com: For each of the following statements, select Yes if the statement is true. Otherwise, select No. NOTE: Each correct selection is worth one point. Hot Area: User1 is a Cloud Device Administrator. User2 is a User Administrator. Device1 is Azure AD registered. Device2 is Azure AD joined. Group1 has the assigned to join type. User1 is the owner of Group1. Group2 has the Dynamic Device join type, and the owner is User2.",
+  "answers": [
+    {
+      "id": 1,
+      "text": "User1 can add Device2 to Group1 - Yes",
+      "isCorrect": true
+    },
+    {
+      "id": 2,
+      "text": "User1 can add Device2 to Group1 - No",
+      "isCorrect": false
+    },
+    {
+      "id": 3,
+      "text": "User2 can add Device1 to Group1 - Yes",
+      "isCorrect": false
+    },
+    {
+      "id": 4,
+      "text": "User2 can add Device1 to Group1 - No",
+      "isCorrect": true
+    },
+    {
+      "id": 5,
+      "text": "User2 can add Device2 to Group2 - Yes",
+      "isCorrect": true
+    },
+    {
+      "id": 6,
+      "text": "User2 can add Device2 to Group2 - No",
+      "isCorrect": false
+    }
+  ],
+  "correctAnswers": [
+    "User1 can add Device2 to Group1 - Yes",
+    "User2 can add Device1 to Group1 - No",
+    "User2 can add Device2 to Group2 - Yes"
+  ],
+  "answerType": "multiple"
+},
+{
+  "_id": {
+    "$oid": "000000000000000000000055"
+  },
+  "question": "You have an Azure subscription that contains a resource group named RG26. RG26 is set to the West Europe location and is used to create temporary resources for a project. RG26 contains the resources shown in the following table. SQLDB01 is backed up to RGV1. When the project is complete, you attempt to delete RG26 from the Azure portal. The deletion fails. You need to delete RG26. What should you do first?",
+  "answers": [
+    {
+      "id": 1,
+      "text": "A. Delete VM1",
+      "isCorrect": false
+    },
+    {
+      "id": 2,
+      "text": "B. Stop VM1",
+      "isCorrect": false
+    },
+    {
+      "id": 3,
+      "text": "C. Stop the backup of SQLDB01",
+      "isCorrect": true
+    },
+    {
+      "id": 4,
+      "text": "D. Delete sa001",
+      "isCorrect": false
+    }
+  ],
+  "correctAnswers": [
+    "C. Stop the backup of SQLDB01"
+  ],
+  "answerType": "single"
+},
+{
+  "_id": {
+    "$oid": "000000000000000000000056"
+  },
+  "question": "You have an Azure subscription named Subscription1 that contains a virtual network named VNet1. VNet1 is in a resource group named RG1. Subscription1 has a user named User1. User1 has the following roles: ✑ Reader ✑ Security Admin ✑ Security Reader You need to ensure that User1 can assign the Reader role for VNet1 to other users. What should you do?",
+  "answers": [
+    {
+      "id": 1,
+      "text": "A. Remove User1 from the Security Reader and Reader roles for Subscription1.",
+      "isCorrect": false
+    },
+    {
+      "id": 2,
+      "text": "B. Assign User1 the User Access Administrator role for VNet1.",
+      "isCorrect": true
+    },
+    {
+      "id": 3,
+      "text": "C. Assign User1 the Network Contributor role for VNet1",
+      "isCorrect": false
+    },
+    {
+      "id": 4,
+      "text": "D. Assign User1 the Network Contributor role for RG1.",
+      "isCorrect": false
+    }
+  ],
+  "correctAnswers": [
+    "B. Assign User1 the User Access Administrator role for VNet1."
+  ],
+  "answerType": "single"
+},
+{
+  "_id": {
+    "$oid": "000000000000000000000057"
+  },
+  "question": "You have an Azure Active Directory (Azure AD) tenant named contosocloud.onmicrosoft.com. Your company has a public DNS zone for contoso.com. You add contoso.com as a custom domain name to Azure AD. You need to ensure that Azure can verify the domain name. Which type of DNS record should you create?",
+  "answers": [
+    {
+      "id": 1,
+      "text": "A. MX",
+      "isCorrect": true
+    },
+    {
+      "id": 2,
+      "text": "B. NSEC",
+      "isCorrect": false
+    },
+    {
+      "id": 3,
+      "text": "C. PTR",
+      "isCorrect": false
+    },
+    {
+      "id": 4,
+      "text": "D. RRSIG",
+      "isCorrect": false
+    }
+  ],
+  "correctAnswers": [
+    "A. MX"
+  ],
+  "answerType": "single"
+},
+{
+  "_id": {
+    "$oid": "000000000000000000000058"
+  },
+  "question": "Note: This question is part of a series of questions that present the same scenario. Each question in the series contains a unique solution that might meet the stated goals. Some question sets might have more than one correct solution, while others might not have a correct solution. After you answer a question in this section, you will NOT be able to return to it. As a result, these questions will not appear in the review screen. You have an Azure Directory (Azure AD) tenant named Adatum and an Azure Subscription named Subscription1. Adatum contains a group named Developers. Subscription1 contains a resource group named Dev. You need to provide the Developers group with the ability to create Azure logic apps in the Dev resource group. Solution: On Subscription1, you assign the DevTest Labs User role to the Developers group. Does this meet the goal?",
+  "answers": [
+    {
+      "id": 1,
+      "text": "A. Yes",
+      "isCorrect": false
+    },
+    {
+      "id": 2,
+      "text": "B. No",
+      "isCorrect": true
+    }
+  ],
+  "correctAnswers": [
+    "B. No"
+  ],
+  "answerType": "single"
+},
+{
+  "_id": {
+    "$oid": "000000000000000000000059"
+  },
+  "question": "Note: This question is part of a series of questions that present the same scenario. Each question in the series contains a unique solution that might meet the stated goals. Some question sets might have more than one correct solution, while others might not have a correct solution. After you answer a question in this section, you will NOT be able to return to it. As a result, these questions will not appear in the review screen. You have an Azure Directory (Azure AD) tenant named Adatum and an Azure Subscription named Subscription1. Adatum contains a group named Developers. Subscription1 contains a resource group named Dev. You need to provide the Developers group with the ability to create Azure logic apps in the Dev resource group. Solution: On Subscription1, you assign the Logic App Operator role to the Developers group. Does this meet the goal?",
+  "answers": [
+    {
+      "id": 1,
+      "text": "A. Yes",
+      "isCorrect": false
+    },
+    {
+      "id": 2,
+      "text": "B. No",
+      "isCorrect": true
+    }
+  ],
+  "correctAnswers": [
+    "B. No"
+  ],
+  "answerType": "single"
+},
+{
+  "_id": {
+    "$oid": "000000000000000000000060"
+  },
+  "question": "Note: This question is part of a series of questions that present the same scenario. Each question in the series contains a unique solution that might meet the stated goals. Some question sets might have more than one correct solution, while others might not have a correct solution. After you answer a question in this section, you will NOT be able to return to it. As a result, these questions will not appear in the review screen. You have an Azure Directory (Azure AD) tenant named Adatum and an Azure Subscription named Subscription1. Adatum contains a group named Developers. Subscription1 contains a resource group named Dev. You need to provide the Developers group with the ability to create Azure logic apps in the Dev resource group. Solution: On Dev, you assign the Contributor role to the Developers group. Does this meet the goal?",
+  "answers": [
+    {
+      "id": 1,
+      "text": "A. Yes",
+      "isCorrect": true
+    },
+    {
+      "id": 2,
+      "text": "B. No",
+      "isCorrect": false
+    }
+  ],
+  "correctAnswers": [
+    "A. Yes"
+  ],
+  "answerType": "single"
+},
+{
+  "_id": {
+    "$oid": "000000000000000000000061"
+  },
+  "question": "DRAG DROP - You have an Azure subscription that is used by four departments in your company. The subscription contains 10 resource groups. Each department uses resources in several resource groups. You need to send a report to the finance department. The report must detail the costs for each department. Which three actions should you perform in sequence? To answer, move the appropriate actions from the list of actions to the answer area and arrange them in the correct order. Select and Place: 1. Assign a tag to each resource group 2. Assign a tag to each resource. 3. Download the usage report. 4. From the Cost analysis blade, filter the view by tag. 5. Open the Resource costs blade of each resource group",
+  "answers": [
+    {
+      "id": 1,
+      "text": "123",
+      "isCorrect": false
+    },
+    {
+      "id": 2,
+      "text": "243",
+      "isCorrect": true
+    },
+    {
+      "id": 3,
+      "text": "543",
+      "isCorrect": false
+    },
+    {
+      "id": 4,
+      "text": "215",
+      "isCorrect": false
+    }
+  ],
+  "correctAnswers": [
+    "243"
+  ],
+  "answerType": "single"
+},
+{
+  "_id": {
+    "$oid": "000000000000000000000062"
+  },
+  "question": "You have an Azure subscription named Subscription1 that contains an Azure Log Analytics workspace named Workspace1. You need to view the error events from a table named Event. Which query should you run in Workspace1?",
+  "answers": [
+    {
+      "id": 1,
+      "text": "A. Get-Event Event | where {$_.EventType == \"error\"}",
+      "isCorrect": false
+    },
+    {
+      "id": 2,
+      "text": "B. search in (Event) \"error\"",
+      "isCorrect": true
+    },
+    {
+      "id": 3,
+      "text": "C. select * from Event where EventType == \"error\"",
+      "isCorrect": false
+    },
+    {
+      "id": 4,
+      "text": "D. search in (Event) * | where EventType -eq \"error\"",
+      "isCorrect": false
+    }
+  ],
+  "correctAnswers": [
+    "B. search in (Event) \"error\""
+  ],
+  "answerType": "single"
+},
+{
+  "_id": {
+    "$oid": "000000000000000000000063"
+  },
+  "question": "HOTSPOT - You have an Azure subscription that contains a virtual network named VNET1 in the East US 2 region. A network interface named VM1-NI is connected to VNET1. You successfully deploy the following Azure Resource Manager template. For each of the following statements, select Yes if the statement is true. Otherwise, select No. NOTE: Each correct selection is worth one point. Hot Area:",
+  "answers": [
+    {
+      "id": 1,
+      "text": "VM1 and VM2 can connect to VNET1 - Yes",
+      "isCorrect": true
+    },
+    {
+      "id": 2,
+      "text": "VM1 and VM2 can connect to VNET1 - No",
+      "isCorrect": false
+    },
+    {
+      "id": 3,
+      "text": "If an Azure datacenter becomes unavailable, VM1 or VM2 will be available - Yes",
+      "isCorrect": true
+    },
+    {
+      "id": 4,
+      "text": "If an Azure datacenter becomes unavailable, VM1 or VM2 will be available - No",
+      "isCorrect": false
+    },
+    {
+      "id": 5,
+      "text": "If the East 2 region becomes unavailable, VM1 or VM2 will be available - Yes",
+      "isCorrect": false
+    },
+    {
+      "id": 6,
+      "text": "If the East 2 region becomes unavailable, VM1 or VM2 will be available - No",
+      "isCorrect": true
+    }
+  ],
+  "correctAnswers": [
+    "VM1 and VM2 can connect to VNET1 - Yes",
+    "If an Azure datacenter becomes unavailable, VM1 or VM2 will be available - Yes",
+    "If the East 2 region becomes unavailable, VM1 or VM2 will be available - No"
+  ],
+  "answerType": "multiple"
 }]
